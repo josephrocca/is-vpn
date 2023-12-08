@@ -1,11 +1,11 @@
 # `isVpn(ip)`
-This repo holds a daily-updated VPN/datacenter IP list. It's based on these data sources:
+This repo holds a daily-updated VPN/datacenter/bot IP list for a binary `isVpn` type check. It's based on these data sources:
 
-* https://github.com/X4BNet/lists_vpn
-* https://github.com/stamparm/ipsum
+* https://github.com/X4BNet/lists_vpn - VPN and datacenter IPs
+* https://github.com/stamparm/ipsum - list of malicious/bot IPs
 * Some daily-updated data from my own server analytics
 
-If you're looking for more than just a binary is/isn't then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple. 
+If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple. 
 
 Also, do not rely on this data if you need highly-accurate detection. If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited). I'll update this repo soon with some "in the wild" accuracy tests, so you know roughly how likely this repo is to give a false negative.
 
