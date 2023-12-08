@@ -61,7 +61,8 @@ class IntervalTree {
 let itree;
 
 async function updateList() {
-  const ipv4CidrRanges = await fetch("https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt").then(r => r.text()).then(t => t.trim().split("\n"));
+  let timeoutMs = 20000;
+  const ipv4CidrRanges = await fetch("https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt", {signal:AbortSignal.timeout(timeoutMs)}).then(r => r.text()).then(t => t.trim().split("\n"));
   itree = new IntervalTree();
   ipv4CidrRanges.map(ipv4CidrToRange).forEach(range => itree.insert(range));
 }
