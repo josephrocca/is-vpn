@@ -20,7 +20,7 @@ if(isVpn(ip)) {
   // do something (but remember, it could be an inaccurate classification)
 }
 ```
-I will *never* change the location/format of `vpn-or-datacenter-ipv4-ranges.txt`, so you're welcome to use that file as part of an equivalent `isVpn` function for non-JS languages.
+I will *never* change the location/format of [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), so you're welcome to use that file as part of an equivalent `isVpn` function for non-JS languages.
 
 Note that the script updates the IP lists automatically every 12 hours via a `setInterval`. See `mod.js`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want.
 
