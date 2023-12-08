@@ -10,7 +10,7 @@ If you're looking for more than just a binary is/isn't, or want to know specific
 Also, do not rely on this data if you need highly-accurate detection. If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited). I'll update this repo soon with some "in the wild" accuracy tests, so you know roughly how likely this repo is to give a false negative.
 
 This isn't published as an NPM package or anything like that because it's so simple. As shown in this example, just download the IP list, put it in a `Set`, and then just check IPs against that set:
-```
+```js
 let vpnIps = await fetch(`https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ips.txt`, {signal:AbortSignal.timeout(10000)}).then(r => r.text()).then(t => new Set(t.trim().split("\n"))).catch(e => (console.error(e), ""));
 
 let ip = "123.123.123.123";
