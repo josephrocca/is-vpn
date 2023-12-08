@@ -14,12 +14,12 @@ jobs:
 
     - name: Download file
       run: |
-        curl -o ip-list.txt -L ${{ secrets.LIST_FILE_URL }}
+        curl -o vpn-or-datacenter-ips.txt -L ${{ secrets.LIST_FILE_URL }}
       
     - name: Commit and push if changed
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add ip-list.txt
+        git add vpn-or-datacenter-ips.txt
         git commit -m "Update file" || exit 0   # This will not fail if there's nothing to commit
         git push
