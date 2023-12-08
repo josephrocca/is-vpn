@@ -11,13 +11,13 @@ This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple,
 
 If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple. 
 
-Example usage:
+## Example usage:
 ```js
 import { isVpn } from "https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.1/mod.js";
 
 let ip = "123.123.123.123";
 if(isVpn(ip)) {
-  // do something (and remember, it could be a false positive!)
+  // do something (but remember, it could be an inaccurate classification)
 }
 ```
 I will *never* change the location/format of `vpn-or-datacenter-ipv4-ranges.txt`, so you're welcome to use that file as part of an equivalent `isVpn` function for non-JS languages.
