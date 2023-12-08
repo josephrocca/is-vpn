@@ -1,3 +1,5 @@
+# work in progress!
+
 # `isVpn(ip)`
 This repo holds a daily-updated VPN/datacenter/bot IP list for a binary `isVpn` type check. It's based on these data sources:
 
