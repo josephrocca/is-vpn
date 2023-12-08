@@ -5,7 +5,7 @@ This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple,
 * https://github.com/stamparm/ipsum - list of suspected malicious/bot IPs (I'm using >= 3 flags as threshold)
 * Some daily-updated private data from my own analytics
 
-**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment.
+**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment.
 
 If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited, though I haven't tested their accuracy against other services). I'll update this repo soon with some "in the wild" accuracy tests of this repo's data, so you know roughly how likely this repo is to give a false negative (when compared against a paid API).
 
