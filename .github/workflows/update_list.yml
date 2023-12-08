@@ -1,0 +1,25 @@
+name: Update List
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # At 01:00 UTC daily
+
+jobs:
+  download-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Download file
+      run: |
+        curl -o ip-list.txt -L ${{ secrets.LIST_FILE_URL }}
+      
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ip-list.txt
+        git commit -m "Update file" || exit 0   # This will not fail if there's nothing to commit
+        git push
