@@ -22,6 +22,18 @@ if(isVpn(ip)) {
 ```
 I will *never* change the location/format of `vpn-or-datacenter-ipv4-ranges.txt`, so you're welcome to use that file as part of an equivalent `isVpn` function for non-JS languages.
 
+As you can see in `mod.js`, an interval tree is used to get decent performance, given that the IP range list is quite large. On my laptop, queries take about 0.2ms. If you expect many queries from the same IP, you should cache the result in a `Map`, which will give you a ~10x performance boost. Maybe something like:
+```js
+let isVpnCache = new Map();
+function isVpnCached(ip) {
+  if(isVpnCache.has(ip)) return isVpnCache.get(ip);
+  let result = isVpn(ip);
+  isVpnCache.set(ip, result);
+  if(isVpnCache.size > 100000) isVpnCache = new Map();
+  return result;
+}
+```
+
 # Important
 There are many valid reasons for people to use VPNs. Please do not use this to carelessly block VPN users when not required. In my case, for example, I use it to allow accepting anonymous votes as part of a ranking algorithm, which is better than forcing all users to sign up. Please try to keep the web usable for VPN users.
 
