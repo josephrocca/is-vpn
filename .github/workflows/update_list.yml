@@ -14,7 +14,7 @@ jobs:
 
     - name: Download file
       run: |
-        curl -f -o vpn-or-datacenter-ipv4-ranges.txt -L ${{ secrets.VPN_OR_DATACENTER_IPS_FILE_URL }}
+        curl -f -o vpn-or-datacenter-ipv4-ranges.txt -L ${{ secrets.VPN_OR_DATACENTER_IPV4_RANGES_FILE_URL }}
       
     - name: Commit and push if changed
       run: |
