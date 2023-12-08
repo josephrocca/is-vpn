@@ -1,6 +1,6 @@
 let ipv4BinaryRanges;
 
-function updateList() {
+async function updateList() {
   const ipv4CidrRanges = await fetch("https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt").then(r => r.text()).then(t => t.trim().split("\n"));
   ipv4BinaryRanges = ipv4CidrRanges.map(ipv4CidrToRange);
 }
