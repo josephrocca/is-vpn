@@ -26,7 +26,7 @@ if(isVpn(ip)) {
 ```
 I will *never* change the location/format of [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), so you're welcome to use that file as part of an equivalent `isVpn` function for other languages.
 
-Note that `mod.js` fetches the updated IP list from this repo automatically every 12 hours via a `setInterval`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want.
+Note that `mod.js` fetches the updated IP list from this repo automatically every 12 hours via a `setInterval`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want - it's just a single file.
 
 ## Performance
 As you can see in `mod.js`, an interval tree is used to get decent performance, given that the IP range list is quite large. On my laptop, queries take about 0.2ms. If you expect many queries from the same IP, you should cache the result in a `Map`, which will give you a ~10x performance boost. Maybe something like:
