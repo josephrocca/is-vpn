@@ -36,7 +36,7 @@ function isVpnCached(ip) {
   if(isVpnCache.has(ip)) return isVpnCache.get(ip);
   let result = isVpn(ip);
   isVpnCache.set(ip, result);
-  if(isVpnCache.size > 100000) isVpnCache = new Map();
+  if(isVpnCache.size > 1_000_000) isVpnCache = new Map();
   return result;
 }
 ```
