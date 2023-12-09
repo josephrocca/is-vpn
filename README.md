@@ -18,6 +18,7 @@ If you're looking for more than just a binary is/isn't, or want to know specific
 ## Example usage:
 ```js
 import { isVpn } from "https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js";
+// let { isVpn } = await import("https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js");
 
 let ip = "123.123.123.123";
 if(isVpn(ip)) {
