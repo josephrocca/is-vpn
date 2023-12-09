@@ -1,11 +1,15 @@
 # `isVpn(ip)`
-This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple, low-accuracy "`isVpn`" check. It's based on these data sources:
+This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple, `isVpn` check. I recommend testing it against your own data/traffic, and comparing it to paid services to see if it's accurate enough for your use case.
+
+It's based on these data sources:
 
 * https://github.com/X4BNet/lists_vpn - VPN and datacenter IPs
 * https://github.com/stamparm/ipsum - list of suspected malicious/bot IPs (I'm using >= 3 flags as threshold)
 * Some daily-updated private data from my own analytics (double-checked against paid API)
 
-**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will slip through the cracks somewhat often. I'll update this repo soon with some "in the wild" accuracy tests of this repo's data, so you know roughly how likely this repo is to give a false negative (when compared against a paid API).
+**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will slip through the cracks somewhat often. 
+
+I'll update this repo soon with some "in the wild" accuracy tests of this repo's data, so you know roughly how likely this repo is to give a false negative (when compared against a paid API).
 
 If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited, though I haven't tested their accuracy against other services). 
 
