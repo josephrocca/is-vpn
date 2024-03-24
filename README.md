@@ -7,15 +7,14 @@ It's based on these data sources:
 * https://github.com/stamparm/ipsum - list of suspected malicious/bot IPs (I'm using >= 3 flags as threshold)
 * Some daily-updated private data from my own analytics (double-checked against paid API)
 
-**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will slip through the cracks somewhat often. 
-
-I'll update this repo soon with some "in the wild" accuracy tests of this repo's data, so you know roughly how likely this repo is to give a false negative (when compared against a paid API).
+**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will sometimes slip through the cracks. 
 
 If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited, though I haven't tested their accuracy against other services). 
 
-If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple. 
+If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple.
 
 ## Example usage:
+You can just use the lists in this repo directly, but if you're looking for an efficient JavaScript `isVpn`, then you can use this:
 ```js
 import { isVpn } from "https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js";
 // let { isVpn } = await import("https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js");
@@ -27,7 +26,7 @@ if(isVpn(ip)) {
 ```
 I will *never* change the location/format of [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), so you're welcome to use that file as part of an equivalent `isVpn` function for other languages.
 
-Note that `mod.js` fetches the updated IP list from this repo automatically every 12 hours via a `setInterval`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want - it's just a single file.
+Note that `mod.js` fetches the updated IP list from this repo automatically once during init, and then every 12 hours via a `setInterval`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want - it's just a single file.
 
 ## Performance
 As you can see in `mod.js`, an interval tree is used to get decent performance, given that the IP range list is quite large. On my laptop, queries take about 0.2ms. If you expect many queries from the same IP, you should cache the result in a `Map`, which will give you a ~10x performance boost. Maybe something like:
