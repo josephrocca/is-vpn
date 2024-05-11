@@ -1,17 +1,18 @@
 # `isVpn(ip)`
-This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple, `isVpn` check. I recommend testing it against your own data/traffic, and comparing it to paid services to see if it's accurate enough for your use case.
+This repo holds a daily-updated VPN/datacenter/bot IP list for a binary, simple, `isVpn` check. I use this extensively in my own projects, so (luckily for you) I have a strong incentive to keep this list up to date. I recommend testing it against your own data/traffic, and comparing it to paid services to see if it's accurate enough for your use case.
 
 It's based on these data sources:
 
 * https://github.com/X4BNet/lists_vpn - VPN and datacenter IPs
 * https://github.com/stamparm/ipsum - list of suspected malicious/bot IPs (I'm using >= 3 flags as threshold)
-* Some daily-updated private data from my own analytics (double-checked against paid API)
+* Daily-updated private data from my own analytics (double-checked against paid API)
 
-**Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be kinda confident-ish that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will sometimes slip through the cracks. 
+These all go into [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), and I will *never* change the location/format of that file.
 
-If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited, though I haven't tested their accuracy against other services). 
-
-If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple.
+## Caveats:
+* There are some commercial companies which provide VPNs for e.g. schools, universities, and companies. An example of this that I've found is "iboss". Just be aware that you may be detecting that a user is using a VPN, when they're actually just using their school/company/etc. internet. So if you show them a message like "Please disable your VPN to submit a vote", then they will probably be confused because they aren't *personally* using a VPN app / browser extension.
+* **Do not rely on this data if you need highly-accurate detection**. Expect false negatives. But there should ideally be very few false positives - i.e. if `isVpn` returns `true`, then you can be confident(-ish) that it is indeed a VPN. If it returns `false`, then you should *not* be confident in that assessment - VPNs will sometimes slip through the cracks. You should fall back to a premium paid API when high accuracy is needed. If you need more accurate data, use a paid service like ip-api.com (I am not affiliated **at all**, I just like that their paid plan is cheap and unlimited, though I haven't tested their accuracy against other services).
+* If you're looking for more than just a binary is/isn't, or want to know specifically whether it's a VPN vs bot vs datacenter, then this is not the repo for you. Please do not submit feature requests unless it's about a new, good data source. I'm keeping this repo very simple.
 
 ## Example usage:
 You can just use the lists in this repo directly, but if you're looking for an efficient JavaScript `isVpn`, then you can use this:
@@ -24,12 +25,12 @@ if(isVpn(ip)) {
   // do something (but remember, it could be an inaccurate classification)
 }
 ```
-I will *never* change the location/format of [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), so you're welcome to use that file as part of an equivalent `isVpn` function for other languages.
+Again, I will *never* change the location/format of [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubusercontent.com/josephrocca/is-vpn/main/vpn-or-datacenter-ipv4-ranges.txt), so you're welcome to use that file as part of an equivalent `isVpn` function for other languages.
 
 Note that `mod.js` fetches the updated IP list from this repo automatically once during init, and then every 12 hours via a `setInterval`. If you don't want that, just copy `mod.js` into your project and make whatever edits you want - it's just a single file.
 
 ## Performance
-As you can see in `mod.js`, an interval tree is used to get decent performance, given that the IP range list is quite large. On my laptop, queries take about 0.2ms. If you expect many queries from the same IP, you should cache the result in a `Map`, which will give you a ~10x performance boost. Maybe something like:
+As you can see in `mod.js`, an interval tree is used to get decent performance, given that the IP range list is quite large. On my laptop, queries take about 0.2ms. If you expect many queries from the same IP, you should cache the result in a `Map`, which can increase performance by up to ~10x. Maybe something like:
 ```js
 let isVpnCache = new Map();
 function isVpnCached(ip) {
