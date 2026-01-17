@@ -17,8 +17,8 @@ These all go into [`vpn-or-datacenter-ipv4-ranges.txt`](https://raw.githubuserco
 ## Example usage:
 You can just use the lists in this repo directly, but if you're looking for an efficient JavaScript `isVpn`, then you can use this:
 ```js
-import { isVpn } from "https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js";
-// let { isVpn } = await import("https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.2/mod.js");
+import { isVpn } from "https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.3/mod.js";
+// let { isVpn } = await import("https://cdn.jsdelivr.net/gh/josephrocca/is-vpn@v0.0.3/mod.js");
 
 let ip = "123.123.123.123";
 if(isVpn(ip)) {
